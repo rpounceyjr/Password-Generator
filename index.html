@@ -67,71 +67,71 @@
                 for (var i = 0; i < passwordLength; i++) {     //multiply by the length of the array containing the specified characters
                     userPassword.push(allCharacters[Math.floor(Math.random() * allCharacters.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             } else if (lowerCase && numerical && upperCase && !specialCharacter) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(lettersAndNumbers[Math.floor(Math.random() * lettersAndNumbers.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             } else if (lowerCase && specialCharacter && upperCase && !numerical) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(lettersAndSpecial[Math.floor(Math.random() * lettersAndSpecial.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             } else if (lowerCase && upperCase && !numerical && !specialCharacter) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(upperAndLower[Math.floor(Math.random() * upperAndLower.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             } else if (lowerCase && specialCharacter && !upperCase && !numerical) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(lowerAndSpecial[Math.floor(Math.random() * lowerAndSpecial.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             } else if (lowerCase && numerical && !upperCase && !specialCharacter) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(lowerAndNumbers[Math.floor(Math.random() * lowerAndNumbers.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             } else if (upperCase && numerical && !lowerCase && !specialCharacter) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(upperAndNumbers[Math.floor(Math.random() * upperAndNumbers.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             } else if (upperCase && specialCharacter && !lowerCase && !numerical) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(upperAndSpecial[Math.floor(Math.random() * upperAndSpecial.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             } else if (specialCharacter && numerical && !lowerCase && !upperCase) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(upperAndSpecial[Math.floor(Math.random() * upperAndSpecial.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             } else if (lowerCase && !upperCase && !specialCharacter && !numerical) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(lilLetters[Math.floor(Math.random() * lilLetters.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             }  else if (upperCase && !lowerCase && !specialCharacter && !numerical) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(bigLetters[Math.floor(Math.random() * bigLetters.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             } else if (specialCharacter && !upperCase && !lowerCase && !numerical) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(specialCharacter[Math.floor(Math.random() * specialCharacter.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             }  else if (numerical && !upperCase && !lowerCase && !specialCharacter) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(numbers[Math.floor(Math.random() * numbers.length)])
                 }
-                document.getElementById("textarea").innerHTML = userPassword;
+                // document.getElementById("textarea").innerHTML = userPassword;
             } else {
                 alert("Please choose at least one character type.")
             }
- 
+            document.getElementById("textarea").innerHTML = userPassword.join("");
 
 
         })
