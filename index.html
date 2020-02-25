@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="container">
+                <h1>Password Generator</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <textarea name="" id="textarea" cols="40" rows="5">
+            Your Secure Password
+        </textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            <button type="button" class="btn btn-primary" id="password-button">Generate Password</button>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        var passwordLength;
+        var lowerCase;
+        var upperCase;
+        var numerical;
+        var specialCharacter;
+
+
+        document.getElementById("password-button").addEventListener("click", function() {
+            passwordLength = prompt("Please choose a password length \(Must be at least 8 characters and no more than 128\)")
+            lowerCase = confirm("Include lower case characters?")
+            upperCase = confirm("Include upper case characters?")
+            numerical = confirm("Include numbers?")
+            specialCharacter = confirm("Include special characters?")
+        })
+        
+          
+
+            
+//password length must be at least 8 characters, no more than 128         
+//ask about lower case
+//ask about upper case
+//ask about numbers
+//ask about special characters
+//confirm that at least one type of char was selected
+//print the password to the page using this code
+    //
+    //             document.getElementById("textarea").innerHTML = "Password Goes Here";
+    //          
+    </script>
+</body>
+
+</html>
