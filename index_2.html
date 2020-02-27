@@ -35,10 +35,6 @@
     <script>
         var userPassword = [];
         var passwordLength;
-        // var lowerCase;
-        // var upperCase;
-        // var numerical;
-        // var specialCharacter;
         var passwordCharArray = [];
 
         // function charCodeRange(start, end) {
@@ -48,13 +44,14 @@
         //     return passwordCharArray;
         // }
 
-        function getPassword(){
-            for (i = 0; i <= passwordLength; i++) {
+        function getPassword() {
+            for (i = 0; i < passwordLength; i++) {
                 userPassword.push(passwordCharArray[Math.floor(Math.random() * passwordCharArray.length)])
             }
             return userPassword;
         }
-        
+
+
         // var lowerCaseCodes = charCodeRange(97, 122);
         // var upperCaseCodes = charCodeRange(65, 90);
         // var numericalCodes = charCodeRange(48, 57);
@@ -65,32 +62,42 @@
         var numericalCodes = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
         var specialCodes = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\"", "]", "^", "_", "`", "{", "|", "}", "~"];
 
+        //clears the userPassword array so the page doesn't have to be reloaded
+        //to generate a new password
+        document.getElementById("password-button").addEventListener("click", function () {
+            userPassword = [];
+            passwordCharArray = [];
+        });
+
         document.getElementById("password-button").addEventListener("click", function () {
             passwordLength = prompt("Please choose a password length \(Must be at least 8 characters and no more than 128\)")
-            var lowerCase = confirm("Include lower case characters?")
-            var upperCase = confirm("Include upper case characters?")
-            var numerical = confirm("Include numbers?")
-            var specialCharacter = confirm("Include special characters?")
+            
             if (passwordLength < 8 || passwordLength > 128) {
                 alert("Please choose a length from 8 to 128 characters");
+                return userPassword = [];
+            } else if (passwordLength >= 8 || passwordLength <= 128) {
+                var lowerCase = confirm("Include lower case characters?")
+                var upperCase = confirm("Include upper case characters?")
+                var numerical = confirm("Include numbers?")
+                var specialCharacter = confirm("Include special characters?")
+                if (lowerCase) {
+                    passwordCharArray = passwordCharArray.concat(lowerCaseCodes);
+
+                } if (upperCase) {
+                    passwordCharArray = passwordCharArray.concat(upperCaseCodes);
+
+                } if (numerical) {
+                    passwordCharArray = passwordCharArray.concat(numericalCodes);
+
+                } if (specialCharacter) {
+                    passwordCharArray = passwordCharArray.concat(specialCodes);
+
+                } else if (!lowerCase && !upperCase && !numerical && !specialCharacter) {
+                    alert("Please choose at least one character type.")
+                }
+                getPassword();
+                document.getElementById("textarea").innerHTML = userPassword.join("");
             }
-            if (lowerCase) {
-                passwordCharArray = passwordCharArray.concat(lowerCaseCodes);
-
-            } if (upperCase) {
-                passwordCharArray = passwordCharArray.concat(upperCaseCodes);
-
-            } if (numerical) {
-                passwordCharArray = passwordCharArray.concat(numericalCodes);
-
-            } if (specialCharacter) {
-                passwordCharArray = passwordCharArray.concat(specialCodes);
-
-            } else {
-                alert("Please choose at least one character type.")
-            }
-            getPassword();
-            document.getElementById("textarea").innerHTML = userPassword.join("");
         });
 
 
