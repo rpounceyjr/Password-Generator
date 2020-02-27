@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="container">
+                <h1>Password Generator</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <textarea name="" id="textarea" cols="40" rows="5">
+            Your Secure Password
+        </textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-primary" id="password-button">Generate Password</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var userPassword = [];
+        var passwordLength;
+        // var lowerCase;
+        // var upperCase;
+        // var numerical;
+        // var specialCharacter;
+        var passwordCharArray = [];
+
+        // function charCodeRange(start, end) {
+        //     for (i = start; i <= end; i++) {
+        //          passwordCharArray.push(i);
+        //     }
+        //     return passwordCharArray;
+        // }
+
+        function getPassword(){
+            for (i = 0; i <= passwordLength; i++) {
+                userPassword.push(passwordCharArray[Math.floor(Math.random() * passwordCharArray.length)])
+            }
+            return userPassword;
+        }
+        
+        // var lowerCaseCodes = charCodeRange(97, 122);
+        // var upperCaseCodes = charCodeRange(65, 90);
+        // var numericalCodes = charCodeRange(48, 57);
+        // var specialCodes = charCodeRange(32, 47).concat(charCodeRange(58, 64)).concat(charCodeRange(91, 96)).concat(charCodeRange(123, 126));
+
+        var lowerCaseCodes = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+        var upperCaseCodes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        var numericalCodes = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        var specialCodes = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\"", "]", "^", "_", "`", "{", "|", "}", "~"];
+
+        document.getElementById("password-button").addEventListener("click", function () {
+            passwordLength = prompt("Please choose a password length \(Must be at least 8 characters and no more than 128\)")
+            var lowerCase = confirm("Include lower case characters?")
+            var upperCase = confirm("Include upper case characters?")
+            var numerical = confirm("Include numbers?")
+            var specialCharacter = confirm("Include special characters?")
+            if (passwordLength < 8 || passwordLength > 128) {
+                alert("Please choose a length from 8 to 128 characters");
+            }
+            if (lowerCase) {
+                passwordCharArray = passwordCharArray.concat(lowerCaseCodes);
+
+            } if (upperCase) {
+                passwordCharArray = passwordCharArray.concat(upperCaseCodes);
+
+            } if (numerical) {
+                passwordCharArray = passwordCharArray.concat(numericalCodes);
+
+            } if (specialCharacter) {
+                passwordCharArray = passwordCharArray.concat(specialCodes);
+
+            } else {
+                alert("Please choose at least one character type.")
+            }
+            getPassword();
+            document.getElementById("textarea").innerHTML = userPassword.join("");
+        });
+
+
+
+    </script>
+</body>
+
+</html>

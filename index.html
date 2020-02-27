@@ -62,8 +62,9 @@
             upperCase = confirm("Include upper case characters?")
             numerical = confirm("Include numbers?")
             specialCharacter = confirm("Include special characters?")
-
-            if (lowerCase && numerical && upperCase && specialCharacter) {
+            if (passwordLength < 8 || passwordLength > 128) {
+                alert("Please choose a length from 8 to 128 characters");
+            } else if (lowerCase && numerical && upperCase && specialCharacter) {
                 for (var i = 0; i < passwordLength; i++) {     //multiply by the length of the array containing the specified characters
                     userPassword.push(allCharacters[Math.floor(Math.random() * allCharacters.length)])
                 }
@@ -113,7 +114,7 @@
                     userPassword.push(lilLetters[Math.floor(Math.random() * lilLetters.length)])
                 }
                 // document.getElementById("textarea").innerHTML = userPassword;
-            }  else if (upperCase && !lowerCase && !specialCharacter && !numerical) {
+            } else if (upperCase && !lowerCase && !specialCharacter && !numerical) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(bigLetters[Math.floor(Math.random() * bigLetters.length)])
                 }
@@ -123,7 +124,7 @@
                     userPassword.push(specialCharacter[Math.floor(Math.random() * specialCharacter.length)])
                 }
                 // document.getElementById("textarea").innerHTML = userPassword;
-            }  else if (numerical && !upperCase && !lowerCase && !specialCharacter) {
+            } else if (numerical && !upperCase && !lowerCase && !specialCharacter) {
                 for (var i = 0; i < passwordLength; i++) {
                     userPassword.push(numbers[Math.floor(Math.random() * numbers.length)])
                 }
@@ -149,6 +150,15 @@
     //
                 // document.getElementById("textarea").innerHTML = "Password Goes Here";
     //          
+
+
+ //THINGS TO FIX
+ // general "code smell" of the conditional statments
+ // condense the character arrays into fewer (one?) arrays, maybe using slice method for allCharacters 
+ // figure out how to stop the alerts if too many/few characters
+ // Overall styling
+ // can the same button be used to clear the textarea/userPassword value?
+ //    different button needed?   
     </script>
 </body>
 
