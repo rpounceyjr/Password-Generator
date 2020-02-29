@@ -1,6 +1,38 @@
-.container {
-    text-align: center;
+body {
+    background-color: grey;
 }
-#textarea {
+/* .container {
+    color: chartreuse;
     text-align: center;
+    border: 10px;
+} */
+
+.big-container {
+    font-family: 'Share Tech Mono';
+    margin-top: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 500px;
+    background-color: black;
+    color: chartreuse;
+    text-align: center;
+    border: 10px;
+
+}
+
+.btn {
+    color: chartreuse;
+    background-color: grey;
+}
+
+hr {
+    background-color: chartreuse;
+    width: 380px;
+}
+
+textarea {
+    border-style: inset;
+    border-width: 5px;
+    border-color:chartreuse;
+    text-align: center ;
 }

@@ -4,30 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Password Generator</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
+    <div class="container big-container">
         <div class="row">
             <div class="container">
                 <h1>Password Generator</h1>
+                <hr>
+                <div class ="row">
+                    <div class = "col-12">
+                        <h3>Generate a Password</h3>
+                    </div>
+                </div>
             </div>
         </div>
+        <hr>
         <div class="row">
             <div class="col-12">
-                <textarea name="" id="textarea" cols="40" rows="5">
-            Your Secure Password
-        </textarea>
+                <textarea name="" id="textarea" cols="40" rows="5">Your Secure Password</textarea>
             </div>
         </div>
+        <hr>
         <div class="row">
             <div class="col-12">
-                <button type="button" class="btn btn-primary" id="password-button">Generate Password</button>
+                <button type="button" class="btn" id="password-button">Generate Password</button>
             </div>
         </div>
     </div>
@@ -35,130 +42,59 @@
     <script>
         var userPassword = [];
         var passwordLength;
-        var lowerCase;
-        var upperCase;
-        var numerical;
-        var specialCharacter;
+        var passwordCharArray = [];
 
+        function getPassword() {
+            for (i = 0; i < passwordLength; i++) {
+                userPassword.push(passwordCharArray[Math.floor(Math.random() * passwordCharArray.length)])
+            }
+            return userPassword;
+        }
 
-        var lilLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-        var bigLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-        var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-        var specialCharacterList = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\"", "]", "^", "_", "`", "{", "|", "}", "~"];
+        var lowerCaseCodes = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+        var upperCaseCodes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        var numericalCodes = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        var specialCodes = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\"", "]", "^", "_", "`", "{", "|", "}", "~"];
 
-        var upperAndLower = lilLetters.concat(bigLetters);
-        var upperAndSpecial = bigLetters.concat(specialCharacterList);
-        var upperAndNumbers = bigLetters.concat(numbers);
-        var lowerAndNumbers = lilLetters.concat(numbers);
-        var lowerAndSpecial = lilLetters.concat(specialCharacterList);
-        var lettersAndNumbers = upperAndLower.concat(numbers);
-        var lettersAndSpecial = upperAndLower.concat(specialCharacterList);
-        var numberAndSpecial = numbers.concat(specialCharacterList);
-        var allCharacters = lilLetters.concat(bigLetters).concat(specialCharacterList).concat(numbers);
+        //clears the userPassword array so the page doesn't have to be reloaded
+        //to generate a new password
+        document.getElementById("password-button").addEventListener("click", function () {
+            userPassword = [];
+            passwordCharArray = [];
+        });
 
         document.getElementById("password-button").addEventListener("click", function () {
             passwordLength = prompt("Please choose a password length \(Must be at least 8 characters and no more than 128\)")
-            lowerCase = confirm("Include lower case characters?")
-            upperCase = confirm("Include upper case characters?")
-            numerical = confirm("Include numbers?")
-            specialCharacter = confirm("Include special characters?")
+
             if (passwordLength < 8 || passwordLength > 128) {
                 alert("Please choose a length from 8 to 128 characters");
-            } else if (lowerCase && numerical && upperCase && specialCharacter) {
-                for (var i = 0; i < passwordLength; i++) {     //multiply by the length of the array containing the specified characters
-                    userPassword.push(allCharacters[Math.floor(Math.random() * allCharacters.length)])
+                return userPassword = [];
+            } else if (passwordLength >= 8 || passwordLength <= 128) {
+                var lowerCase = confirm("Include lower case characters?")
+                var upperCase = confirm("Include upper case characters?")
+                var numerical = confirm("Include numbers?")
+                var specialCharacter = confirm("Include special characters?")
+                if (lowerCase) {
+                    passwordCharArray = passwordCharArray.concat(lowerCaseCodes);
+
+                } if (upperCase) {
+                    passwordCharArray = passwordCharArray.concat(upperCaseCodes);
+
+                } if (numerical) {
+                    passwordCharArray = passwordCharArray.concat(numericalCodes);
+
+                } if (specialCharacter) {
+                    passwordCharArray = passwordCharArray.concat(specialCodes);
+
+                } else if (!lowerCase && !upperCase && !numerical && !specialCharacter) {
+                    alert("Please choose at least one character type.")
                 }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (lowerCase && numerical && upperCase && !specialCharacter) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(lettersAndNumbers[Math.floor(Math.random() * lettersAndNumbers.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (lowerCase && specialCharacter && upperCase && !numerical) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(lettersAndSpecial[Math.floor(Math.random() * lettersAndSpecial.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (lowerCase && upperCase && !numerical && !specialCharacter) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(upperAndLower[Math.floor(Math.random() * upperAndLower.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (lowerCase && specialCharacter && !upperCase && !numerical) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(lowerAndSpecial[Math.floor(Math.random() * lowerAndSpecial.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (lowerCase && numerical && !upperCase && !specialCharacter) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(lowerAndNumbers[Math.floor(Math.random() * lowerAndNumbers.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (upperCase && numerical && !lowerCase && !specialCharacter) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(upperAndNumbers[Math.floor(Math.random() * upperAndNumbers.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (upperCase && specialCharacter && !lowerCase && !numerical) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(upperAndSpecial[Math.floor(Math.random() * upperAndSpecial.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (specialCharacter && numerical && !lowerCase && !upperCase) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(upperAndSpecial[Math.floor(Math.random() * upperAndSpecial.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (lowerCase && !upperCase && !specialCharacter && !numerical) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(lilLetters[Math.floor(Math.random() * lilLetters.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (upperCase && !lowerCase && !specialCharacter && !numerical) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(bigLetters[Math.floor(Math.random() * bigLetters.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (specialCharacter && !upperCase && !lowerCase && !numerical) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(specialCharacter[Math.floor(Math.random() * specialCharacter.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else if (numerical && !upperCase && !lowerCase && !specialCharacter) {
-                for (var i = 0; i < passwordLength; i++) {
-                    userPassword.push(numbers[Math.floor(Math.random() * numbers.length)])
-                }
-                // document.getElementById("textarea").innerHTML = userPassword;
-            } else {
-                alert("Please choose at least one character type.")
+                getPassword();
+                document.getElementById("textarea").innerHTML = userPassword.join("");
             }
-            document.getElementById("textarea").innerHTML = userPassword.join("");
+        });
 
 
-        })
-
-
-
-//password length must be at least 8 characters, no more than 128         
-  //should check for edge cases by making sure it's in the range
-//ask about lower case DONE
-//ask about upper case DONE
-//ask about numbers DONE
-//ask about special characters DONE
-//confirm that at least one type of char was selected
-//print the password to the page using this code
-    //
-                // document.getElementById("textarea").innerHTML = "Password Goes Here";
-    //          
-
-
- //THINGS TO FIX
- // general "code smell" of the conditional statments
- // condense the character arrays into fewer (one?) arrays, maybe using slice method for allCharacters 
- // figure out how to stop the alerts if too many/few characters
- // Overall styling
- // can the same button be used to clear the textarea/userPassword value?
- //    different button needed?   
     </script>
 </body>
 
