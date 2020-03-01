@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
-    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 
@@ -43,7 +43,9 @@
         var userPassword = [];
         var passwordLength;
         var passwordCharArray = [];
-
+        var passwordButton = document.getElementById("password-button");
+        var textarea = document.getElementById("textarea");
+        
         function getPassword() {
             for (i = 0; i < passwordLength; i++) {
                 userPassword.push(passwordCharArray[Math.floor(Math.random() * passwordCharArray.length)])
@@ -56,16 +58,14 @@
         var numericalCodes = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
         var specialCodes = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\"", "]", "^", "_", "`", "{", "|", "}", "~"];
 
-        //clears the userPassword array so the page doesn't have to be reloaded
+        passwordButton.addEventListener("click", function () {
+            //clears the userPassword array so the page doesn't have to be reloaded
         //to generate a new password
-        document.getElementById("password-button").addEventListener("click", function () {
             userPassword = [];
             passwordCharArray = [];
-        });
 
-        document.getElementById("password-button").addEventListener("click", function () {
             passwordLength = prompt("Please choose a password length \(Must be at least 8 characters and no more than 128\)")
-
+            
             if (passwordLength < 8 || passwordLength > 128) {
                 alert("Please choose a length from 8 to 128 characters");
                 return userPassword = [];
@@ -90,11 +90,9 @@
                     alert("Please choose at least one character type.")
                 }
                 getPassword();
-                document.getElementById("textarea").innerHTML = userPassword.join("");
+                textarea.innerHTML = userPassword.join("");
             }
         });
-
-
     </script>
 </body>
 
